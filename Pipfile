@@ -12,6 +12,8 @@ name = "pypi"
 [packages]
 
 django = "*"
+whitenoise = "*"
+gunicorn = "*"
 
 
 [requires]
