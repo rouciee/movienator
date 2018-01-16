@@ -6,6 +6,13 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 </head>
 <body>
-	Hello, {{ name }}!
+	<nav class="navbar"></nav>
+	<div class="filter">
+		<row>
+			<button class="btn" type="button" value="Year">Year</button>
+			<button class="btn" type="button" value="Genre">Genre</button>
+			<button class="btn" type="button" value="IMDb rating">IMDb rating</button>
+		</row>	
+	</div>
 </body>
 </html>
