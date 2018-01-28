@@ -15,6 +15,7 @@ class Command(BaseCommand):
 
 	def handle(self, *args, **kwargs):
 		year = kwargs['year']
+		print(year)
 
 		imdb_ids_in_db = set()
 		for m in Movie.objects.exclude(imdb_id=None):
@@ -52,14 +53,14 @@ class Command(BaseCommand):
 			if columns[1] == 'movie' and (year is None or columns[5] == str(year)) and columns[0] not in imdb_ids_in_db:
 				imdb_id = columns[0]
 				title = columns[2]
-				year = None if columns[5] == '\\N' else int(columns[5])
+				released_year = None if columns[5] == '\\N' else int(columns[5])
 				runtime = None if columns[7] == '\\N' else int(columns[7])
 				is_adult = columns[4] == '1'
 				entry_genres = columns[8].split(',')
 
 				m_rating = None if imdb_id not in ratings_map else ratings_map[imdb_id]
 				m_num_votes = None if imdb_id not in num_votes_map else num_votes_map[imdb_id]
-				m = Movie(title=title, released_year=year, runtime=runtime,
+				m = Movie(title=title, released_year=released_year, runtime=runtime,
 						  is_adult=is_adult, imdb_id=imdb_id, imdb_rating=m_rating,
 						  imdb_num_votes=m_num_votes)
 				m.save()
