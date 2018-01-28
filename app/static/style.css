@@ -37,22 +37,37 @@ nav h1 {
 	border-radius: 2px;
 }
 
+.main-container {
+	display: flex;
+}
 .results-container {
 	background-color: #ffffff;
 	width: 70%;
 	margin: auto;
 	margin-top: 40px;
-	padding: 40px;
+	padding: 30px;
 	border-radius: 5px;
 	border: 1px solid #d6d6d6;
 	box-shadow: 4px 4px 20px -7px #ccc;
 
 	display: flex;
+	flex-direction: column;
+}
+
+.results-container h3{
+	margin-top: 0px;
 }
 
 .results-container img {
 	height: 260px;
     width: auto;
+}
+
+.movie-info {
+	flex-direction: column;
+}
+.movie-info-section {
+	display: flex;
 }
 
 .movie-info, .movie-synopsis {
