@@ -4,15 +4,53 @@
 	<title>Movienator</title>
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
-	<nav class="navbar"></nav>
-	<div class="filter">
-		<row>
-			<button class="btn" type="button" value="Year">Year</button>
-			<button class="btn" type="button" value="Genre">Genre</button>
-			<button class="btn" type="button" value="IMDb rating">IMDb rating</button>
-		</row>	
+	<nav>
+		<h1>Movienator</h1>
+	</nav>
+	<div class="filter-container">
+		<p>Cupcake ipsum dolor sit. Amet oat cake ice cream jelly sugar plum powder.</p>
+		<button type="button">Year</button>
+		<button type="button">Genre</button>
+		<button type="button">IMDb Rating</button>
+		<button type="button">Roll!</button>
+	</div>
+	<div class="results-container">
+		<div class="movie-info-container">
+			<div class="movie-info">	
+				<div class="movie-poster">
+					<img src="https://i.pinimg.com/736x/49/6f/58/496f5882597c4966a2ce7289d627a1a0--hogwarts-stones.jpg" alt="Smiley face">
+				</div>	
+				<div class="movie-details">
+					<div class="rating">	
+						<i class="fa fa-star-o icon" aria-hidden="true"></i>
+						<span> 7.6/10 </span>
+					</div>	
+					<div class="year">
+						<i class="fa fa-calendar icon" aria-hidden="true"></i>
+						<span> 2001 </span>
+					</div>	
+					<div class="running-time">
+						<i class="fa fa-clock-o icon" aria-hidden="true"></i>
+						<span> 2h 32m </span>
+					</div>
+					<div class="genre">	
+						<i class="fa fa-film icon" aria-hidden="true"></i>
+						<span> Adventure, Family, Fantasy </span>
+					</div>	
+				</div>	
+			</div>	
+			<div class="movie-synopsis">
+				<p>
+					Rescued from the outrageous neglect of his aunt and uncle, a young boy with a great destiny proves his worth while attending Hogwarts School of Witchcraft and Wizardry.
+				</p>
+			</div>	
+		</div>
+		<div class="movie-trailer">
+			<iframe width="600px" height="375px" src="https://www.youtube.com/embed/VyHV0BRtdxo"></iframe>
+		</div>		
 	</div>
 </body>
 </html>
