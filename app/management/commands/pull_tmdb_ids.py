@@ -18,5 +18,8 @@ class Command(BaseCommand):
 			if len(movie_results) == 0:
 				movie.tmdb_id = -1
 			else:
-				movie.tmdb_id = movie_results[0]['id']
+				result = movie_results[0]
+				movie.tmdb_id = result['id']
+				movie.poster_path = result['poster_path']
+				movie.overview = result['overview']
 			movie.save()
