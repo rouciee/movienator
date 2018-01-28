@@ -17,3 +17,7 @@ Ensure you have a .env file.
 Youtube links are: `https://www.youtube.com/watch?v=<youtube_trailer_key>`
 
 IMDB movies are: `http://www.imdb.com/title/<imdb_id>/`
+
+### Troubleshooting
+
+If you get a Locale UTF error when running the pipenv shell in a Mac, see: https://github.com/pypa/pipenv/issues/187
