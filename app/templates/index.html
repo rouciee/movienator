@@ -12,10 +12,12 @@
 	</nav>
 	<div class="filter-container">
 		<p>Cupcake ipsum dolor sit. Amet oat cake ice cream jelly sugar plum powder.</p>
-		<button type="button">Year</button>
-		<button type="button">Genre</button>
-		<button type="button">IMDb Rating</button>
-		<button type="button">Roll!</button>
+		<div>	
+			<button type="button">Year</button>
+			<button type="button">Genre</button>
+			<button type="button">IMDb Rating</button>
+			<button type="button">Roll!</button>
+		</div>		
 	</div>
 	<div class="results-container">
 		<div class="movie-info-container">
@@ -26,19 +28,19 @@
 				<div class="movie-details">
 					<div class="rating">	
 						<i class="fa fa-star-o icon" aria-hidden="true"></i>
-						<span> 7.6/10 </span>
+						<span> {{ rating }}/10 </span>
 					</div>	
 					<div class="year">
 						<i class="fa fa-calendar icon" aria-hidden="true"></i>
-						<span> 2001 </span>
+						<span> {{ year }} </span>
 					</div>	
 					<div class="running-time">
 						<i class="fa fa-clock-o icon" aria-hidden="true"></i>
-						<span> 2h 32m </span>
+						<span> {{ hours }}h {{ minutes }}m </span>
 					</div>
 					<div class="genre">	
 						<i class="fa fa-film icon" aria-hidden="true"></i>
-						<span> Adventure, Family, Fantasy </span>
+						<span> {{ genres }} </span>
 					</div>	
 				</div>	
 			</div>	
