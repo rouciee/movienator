@@ -5,6 +5,7 @@
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<script src="{% static 'script.js' %}"></script>
 </head>
 <body>
 	<nav>
@@ -12,52 +13,52 @@
 	</nav>
 	<div class="filter-container">
 		<p>Cupcake ipsum dolor sit. Amet oat cake ice cream jelly sugar plum powder.</p>
-		<div>	
+		<div>
 			<button type="button">Year</button>
 			<button type="button">Genre</button>
 			<button type="button">IMDb Rating</button>
 			<button type="button">Roll!</button>
-		</div>		
+		</div>
 	</div>
 	<div class="results-container">
 		<div class="main-container">
 			<div class="movie-info-container">
-				<div class="movie-info">	
+				<div class="movie-info">
 					<h3>Harry Potter and the Sorcerer's Stone </h3>
 						<div class="movie-info-section">
 							<div class="movie-poster">
 								<img src="https://i.pinimg.com/736x/49/6f/58/496f5882597c4966a2ce7289d627a1a0--hogwarts-stones.jpg" alt="Smiley face">
-							</div>	
+							</div>
 							<div class="movie-details">
-								<div class="rating">	
+								<div class="rating">
 									<i class="fa fa-star-o icon" aria-hidden="true"></i>
 									<span> {{ rating }}/10 </span>
-								</div>	
+								</div>
 								<div class="year">
 									<i class="fa fa-calendar icon" aria-hidden="true"></i>
 									<span> {{ year }} </span>
-								</div>	
+								</div>
 								<div class="running-time">
 									<i class="fa fa-clock-o icon" aria-hidden="true"></i>
 									<span> {{ hours }}h {{ minutes }}m </span>
 								</div>
-								<div class="genre">	
+								<div class="genre">
 									<i class="fa fa-film icon" aria-hidden="true"></i>
 									<span> {{ genres }} </span>
-								</div>	
+								</div>
 							</div>
-						</div>		
-				</div>	
+						</div>
+				</div>
 				<div class="movie-synopsis">
 					<p>
-						Rescued from the outrageous neglect of his aunt and uncle, a young boy with a great destiny proves his worth while attending Hogwarts School of Witchcraft and Wizardry. 
+						Rescued from the outrageous neglect of his aunt and uncle, a young boy with a great destiny proves his worth while attending Hogwarts School of Witchcraft and Wizardry.
 					</p>
-				</div>	
+				</div>
 			</div>
 			<div class="movie-trailer">
 				<iframe width="600px" height="375px" src="https://www.youtube.com/embed/VyHV0BRtdxo"></iframe>
 			</div>
-		</div>			
+		</div>
 	</div>
 </body>
 </html>
