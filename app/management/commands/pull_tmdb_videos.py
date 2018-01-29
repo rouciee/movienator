@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
 			movie.youtube_trailer_key = "-1"  # sentinel value for searched but couldn't find.
 			for r in res.json()['results']:
-				if r['site'] != 'Youtube':
+				if r['site'] != 'YouTube':
 					continue
 
 				movie.youtube_trailer_key = r['key']
