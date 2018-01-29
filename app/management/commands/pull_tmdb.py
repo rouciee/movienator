@@ -14,6 +14,8 @@ class Command(BaseCommand):
 		api_key = os.environ['TMDB_API_KEY']
 		for movie in Movie.objects.filter(tmdb_id=None).exclude(imdb_id=None):
 			res = requests.get(API_URL_FORMAT % (movie.imdb_id, api_key))
+			print(res.json())
+
 			movie_results = res.json()['movie_results']
 			if len(movie_results) == 0:
 				movie.tmdb_id = -1
