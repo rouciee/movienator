@@ -3,6 +3,7 @@ body {
 	font-size: 14px;
 	margin: 0;
 	font-family: "Roboto", sans-serif;
+	color: #303030;
 }
 
 nav {
@@ -66,6 +67,7 @@ nav h1 {
 .movie-info {
 	flex-direction: column;
 }
+
 .movie-info-section {
 	display: flex;
 }
