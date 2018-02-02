@@ -14,14 +14,19 @@ class Command(BaseCommand):
 		api_key = os.environ['TMDB_API_KEY']
 		for movie in Movie.objects.filter(tmdb_id=None).exclude(imdb_id=None):
 			res = requests.get(API_URL_FORMAT % (movie.imdb_id, api_key))
-			print(res.json())
+			if res.status_code != 200:
+				print('Bad status %d on %s. skipping...' % (res.status_code, movie))
+				continue
 
 			movie_results = res.json()['movie_results']
 			if len(movie_results) == 0:
 				movie.tmdb_id = -1
 			else:
 				result = movie_results[0]
-				movie.tmdb_id = result['id']
-				movie.poster_path = result['poster_path']
-				movie.overview = result['overview']
+				if 'id' in result:
+					movie.tmdb_id = result['id']
+				if 'poster_path' in result:
+					movie.poster_path = result['poster_path']
+				if 'overview' in result:
+					movie.overview = result['overview']
 			movie.save()
