@@ -17,8 +17,8 @@
 			<div class="dropdown">
 				<button onclick="myFunction()" class="dropbtn" type="button">Year</button>
 				<div id="myDropdown" class="dropdown-content">
-				</div>	
-			</div>	
+				</div>
+			</div>
 			<button type="button">Genre</button>
 			<button type="button">IMDb Rating</button>
 			<button type="button">Roll!</button>
@@ -42,10 +42,12 @@
 									<i class="fa fa-calendar icon" aria-hidden="true"></i>
 									<span> {{ year }} </span>
 								</div>
+								{% if hours is not None %}
 								<div class="running-time">
 									<i class="fa fa-clock-o icon" aria-hidden="true"></i>
 									<span> {{ hours }}h {{ minutes }}m </span>
 								</div>
+								{% endif %}
 								<div class="genre">
 									<i class="fa fa-film icon" aria-hidden="true"></i>
 									<span> {{ genres }} </span>

@@ -5,6 +5,8 @@ from app.models import Movie
 
 
 def hours_and_minutes(runtime):
+    if runtime is None:
+        return (None, None)
     return (int(runtime / 60), runtime % 60)
 
 
