@@ -6,11 +6,12 @@ from app.models import Movie
 
 def index(request):
     movies = Movie.objects.filter(
-        is_adult=False, imdb_rating__gt=7, imdb_num_votes__gt=1000)\
+        is_adult=False, imdb_rating__gt=6, imdb_num_votes__gt=5000, released_year__gt=2000)\
         .exclude(youtube_trailer_key=None)\
         .exclude(youtube_trailer_key="-1")\
         .exclude(poster_path=None)
     count = movies.count()
+    print(count)
     if count == 0:
         movie = Movie.objects.first()
     else:

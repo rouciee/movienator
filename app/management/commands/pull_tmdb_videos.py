@@ -15,7 +15,9 @@ class Command(BaseCommand):
 		api_key = os.environ['TMDB_API_KEY']
 		for movie in Movie.objects.filter(youtube_trailer_key=None).exclude(Q(tmdb_id=None) | Q(tmdb_id=-1)):
 			res = requests.get(API_URL_FORMAT % (movie.tmdb_id, api_key))
-			print(res.json())
+			if res.status_code != 200:
+				print('Bad status %d on %s. skipping...' % (res.status_code, movie))
+				continue
 
 			movie.youtube_trailer_key = "-1"  # sentinel value for searched but couldn't find.
 			for r in res.json()['results']:
