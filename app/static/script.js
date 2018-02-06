@@ -4,6 +4,10 @@ function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
+function roll() {
+  window.location.replace('/');
+}
+
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
 

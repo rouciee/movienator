@@ -19,5 +19,6 @@ from app import views
 
 urlpatterns = [
 	path('', views.index),
+	path('<int:pk>/', views.movie),
     path('admin/', admin.site.urls),
 ]

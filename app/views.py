@@ -1,21 +1,16 @@
 import random
 
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from app.models import Movie
 
 
-def hours_and_minutes(runtime):
-    if runtime is None:
-        return (None, None)
-    return (int(runtime / 60), runtime % 60)
-
-
-def index(request):
+def _get_random_movie_not_in(ids_to_exclude):
     movies = Movie.objects.filter(
         is_adult=False, imdb_rating__gt=5, imdb_num_votes__gt=400, released_year__gt=2000)\
         .exclude(youtube_trailer_key=None)\
         .exclude(youtube_trailer_key="-1")\
-        .exclude(poster_path=None)
+        .exclude(poster_path=None)\
+        .exclude(pk__in=ids_to_exclude)
     count = movies.count()
 
     if count == 0:
@@ -23,12 +18,45 @@ def index(request):
     else:
         i = random.randint(0, count - 1)
         movie = movies.all()[i]
-    genre_string = ', '.join([g.name for g in movie.genres.all()])
-    (hours, minutes) = hours_and_minutes(movie.runtime)
 
     print(count)
     print(movie)
+    return movie
 
+
+def _add_to_session(request, movie):
+    request.session.set_expiry(0)  # erase when user closes browser.
+    if 'seen' in request.session:
+        request.session['seen'] = request.session['seen'] + [movie.id]
+    else:
+        request.session['seen'] = [movie.id]
+
+
+def _get_seen_from_session(request):
+    if 'seen' in request.session:
+        return request.session['seen']
+    else:
+        return []
+
+
+def index(request):
+    ids_to_exclude = _get_seen_from_session(request)
+    movie = _get_random_movie_not_in(ids_to_exclude)
+    return redirect('/' + str(movie.id) + '/')
+
+
+def _hours_and_minutes(runtime):
+    if runtime is None:
+        return (None, None)
+    return (int(runtime / 60), runtime % 60)
+
+
+def movie(request, pk):
+    movie = Movie.objects.get(pk=pk)
+    _add_to_session(request, movie)
+
+    genre_string = ', '.join([g.name for g in movie.genres.all()])
+    (hours, minutes) = _hours_and_minutes(movie.runtime)
     return render(request, 'index.html', {
         'title': movie.title,
         'overview': movie.overview,
