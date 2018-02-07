@@ -1,5 +1,5 @@
 body {
-	background-color: #efefef;
+	background-color: #ffffff;
 	font-size: 14px;
 	margin: 0;
 	font-family: "Roboto", sans-serif;
@@ -7,9 +7,13 @@ body {
 }
 
 nav {
-	background-color: #0F1D54;
+	background-color: #466283;
 	margin: 0;
-	padding: 10px;
+	height: 70px;
+
+	display: flex;
+	align-items: center;
+
 }
 
 nav h1 {
@@ -17,38 +21,40 @@ nav h1 {
 	color: #ffffff;
 }
 
-/* Filter container */
-
-.filter-container {
-	background-color: #0F1D54;
-	height: 180px;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+.filter-container button {
+	height: 33px;
+	border-radius: 2px;
+	cursor: pointer;
+	background-color: #ffffff;
 }
-
-.filter-container p {
-	color: #ffffff;
-}
-
-/* Filter dropdowns */
 
 .filter-buttons {
 	display: flex;
 }
 
-.filter-container button {
-	height: 30px;
+.genre-filter {
+	width: 400px;
+	margin-left: 30px;
+	font-size: 1em;
+	color: #303030;
+}
+
+.genre-filter:hover{
+	background-color: #20BBE0;
+	border-color: #20BBE0;
+	color: #ffffff;
+}
+
+.roll {
+	margin-left: 20px;
 	width: 90px;
-	margin: 5px 15px 5px 0;
-	border-radius: 2px;
+	font-size: 1em;
+	color: #303030;
 }
 
 .dropbtn:focus {
-    background-color: red;
-    border: 1px solid red;
+    background-color: #20BBE0;
+    border: 1px solid #20BBE0;
 }    
 
 .dropdown {
@@ -61,73 +67,75 @@ nav h1 {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 250px;
-    height: 130px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border: 1px solid rgb(216, 216, 216);
     border-radius: 2px;
-    margin-top: 5px;
+    margin: 10px 0 0 30px;
 }    
 
 .show {
 	display:block;
 }
 
-.main-container {
+.genres {
 	display: flex;
+	padding: 15px;
 }
+
+.lists {
+	list-style: none;
+	padding: 0px;
+	margin: 0;
+	width: 150px;
+}
+
+.genres li {
+	cursor: pointer;
+	padding: 10px;
+	border: 1px solid transparent;
+	margin: 0;
+}
+
+li:hover {
+	background-color: #63e497;
+	border: 1px solid #;
+	border-radius: 2px;
+}
+
+.active {
+	background-color: #63e497;
+	border: 2px solid #000000;
+}
+
+.blur {
+	filter: blur(5px);
+}
+
 .results-container {
 	background-color: #ffffff;
-	width: 70%;
 	margin: auto;
 	margin-top: 40px;
 	padding: 30px;
-	border-radius: 5px;
-	border: 1px solid #d6d6d6;
-	box-shadow: 4px 4px 20px -7px #ccc;
 
 	display: flex;
 	flex-direction: column;
-}
-
-.results-container h3{
-	margin-top: 0px;
 }
 
 .results-container img {
-	height: 260px;
+	height: 450px;
     width: auto;
+    margin-right: 20px;
 }
 
-.movie-info {
-	flex-direction: column;
+h2 {
+	margin: 0 0 10px 170px;
 }
 
-.movie-info-section {
+.main-container {
 	display: flex;
-}
-
-.movie-info, .movie-synopsis {
-	margin-right: 20px;
-
-	display: flex;
-}
-
-.movie-details {
-	margin: 10px 10px 10px 30px;
-}
-
-.movie-details div {
-	margin-bottom: 30px;
-}
-
-.movie-details i {
-	font-size: 20px;
-}
-
-.movie-details span {
-	margin-left: 10px;
-}
+	justify-content: center;
+}	
 
 .movie-trailer iframe {
 	border: none;
