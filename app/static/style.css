@@ -92,20 +92,29 @@ nav h1 {
 
 .genres li {
 	cursor: pointer;
-	padding: 10px;
+	padding: 8px;
 	border: 1px solid transparent;
 	margin: 0;
 }
 
 li:hover {
-	background-color: #63e497;
-	border: 1px solid #;
+	background-color: #cfd2d0;
 	border-radius: 2px;
 }
 
 .active {
-	background-color: #63e497;
+	background-color: #cfd2d0;
 	border: 2px solid #000000;
+
+	justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+}
+
+.fa-times{
+	align-self: center;
+	color: #7574748a;
+	font-size: 11px;
 }
 
 .blur {

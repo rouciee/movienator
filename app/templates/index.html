@@ -4,8 +4,8 @@
 	<title>Movienator</title>
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<script src="{% static 'script.js' %}"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 <body>
 	<nav>
@@ -17,7 +17,9 @@
 						<div id="myDropdown" class="dropdown-content">
 							<div class="genres">
 								<ul class="lists">
-									<li class="active">Adventure</li>
+									<li class="active">Adventure
+										<i class="fas fa-times"></i>
+									</li>
 									<li>Action</li>
 									<li>Anime</li>
 									<li>Drama</li>
