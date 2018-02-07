@@ -1,23 +1,28 @@
-// Filter Dropdown //
+$(document).ready(function() {
+  function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+  }
 
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
+  function roll() {
+    window.location.replace('/');
+  }
 
-function roll() {
-  window.location.replace('/');
-}
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
 
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
       }
     }
   }
-}
+
+  $(".dropdown").click(function(){
+      $(".results-container").toggleClass("blur");
+      console.log("Hola");
+  });
+});
