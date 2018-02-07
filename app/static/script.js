@@ -1,13 +1,12 @@
-$(document).ready(function() {
-  function myFunction() {
+function myFunction() {
       document.getElementById("myDropdown").classList.toggle("show");
   }
 
-  function roll() {
+function roll() {
     window.location.replace('/');
   }
 
-  window.onclick = function(event) {
+window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
 
       var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -21,6 +20,7 @@ $(document).ready(function() {
     }
   }
 
+$(document).ready(function() {
   $(".dropdown").click(function(){
       $(".results-container").toggleClass("blur");
       console.log("Hola");
