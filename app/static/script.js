@@ -1,17 +1,42 @@
+var imgLoaded = false;
+var videoLoaded = false;
+
 var ANIMATION_DURATION = 250;
 var refreshWithAnimation = function() {
   // Refresh data without full-page reload.  AJAX.
   $.get('/random.json', function(data) {
     // Do this first so that we start fetching poster and video.
-    $("h2").text(data.title);
-    $("img").attr("src", data.poster_path);
-    $("iframe").attr("src", data.youtube_url);
+    $("#two h2").text(data.title);
+    $("#two img").attr("src", data.poster_path);
+    $("#two iframe").attr("src", data.youtube_url);
 
+    $("#one").fadeOut();
     window.history.pushState({}, '', '/' + data.id + '/');
   });
 };
 
-$(document).ready(function() {
+var maybeDoSwitch = function() {
+  if (imgLoaded && videoLoaded) {
+    $("#two").fadeIn(400, function() {
+      // Reset variables.
+      $("#one").prop("id", "tmp");
+      $("#two").prop("id", "one");
+      $("#tmp").prop("id", "two");
+      imgLoaded = false;
+      videoLoaded = false;
+    });
+  }
+};
+
+$(window).on('load', function() {
+  $('img').on('load', function() {
+    imgLoaded = true;
+    maybeDoSwitch()
+  });
+  $('iframe').on('load', function() {
+    videoLoaded = true;
+    maybeDoSwitch()
+  });
 
   // ===== Attach handlers for dropdown
   $(".dropdown-button").click(function() {

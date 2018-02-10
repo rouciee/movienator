@@ -1,5 +1,8 @@
+html {
+	height: 100vh;
+	background-color: #232323;
+}
 body {
-	background-color: #ffffff;
 	font-size: 14px;
 	margin: 0;
 	font-family: "Roboto", sans-serif;
@@ -156,8 +159,8 @@ h4 {
 }
 
 .magictime {
-	-webkit-animation-duration: 250ms;
-	-moz-animation-duration: 250ms;
-	-o-animation-duration: 250ms;
-	animation-duration: 250ms;
+	-webkit-animation-duration: 150ms;
+	-moz-animation-duration: 150ms;
+	-o-animation-duration: 150ms;
+	animation-duration: 150ms;
 }

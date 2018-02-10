@@ -45,7 +45,17 @@
 		</div>
 		<button autofocus class="roll" type="button">Roll!</button>
 	</nav>
-	<div class="panel">
+	<div id="one" class="panel">
+		<img src="https://image.tmdb.org/t/p/original{{ poster_path }}" alt="Movie Poster">
+		<div class="right-panel">
+			<iframe src="https://www.youtube.com/embed/{{ youtube_trailer_key }}"></iframe>
+			<div class="info">
+				<h2>{{ title }} ( {{ year }} )</h2>
+				<h4>{{ genres }}</h4>
+			</div>
+		</div>
+	</div>
+	<div id="two" class="panel" style="display: none">
 		<img src="https://image.tmdb.org/t/p/original{{ poster_path }}" alt="Movie Poster">
 		<div class="right-panel">
 			<iframe src="https://www.youtube.com/embed/{{ youtube_trailer_key }}"></iframe>
