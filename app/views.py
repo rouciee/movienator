@@ -7,7 +7,7 @@ from app.models import Movie
 
 def _get_random_movie_not_in(ids_to_exclude):
     movies = Movie.objects.filter(
-        is_adult=False, imdb_rating__gt=5, imdb_num_votes__gt=400, released_year__gt=2000)\
+        is_adult=False, imdb_rating__gt=6, imdb_num_votes__gt=400, released_year__gt=2000)\
         .exclude(youtube_trailer_key=None)\
         .exclude(youtube_trailer_key="-1")\
         .exclude(poster_path=None)\
@@ -52,6 +52,8 @@ def random_json(request):
     return JsonResponse({
         'id': movie.id,
         'title': movie.title,
+        'year': movie.released_year,
+        'genres': ', '.join([g.name for g in movie.genres.all()]),
         'youtube_url': "https://www.youtube.com/embed/" + movie.youtube_trailer_key,
         'poster_path': "https://image.tmdb.org/t/p/original" + movie.poster_path
     })

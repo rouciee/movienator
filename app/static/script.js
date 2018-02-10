@@ -6,9 +6,11 @@ var refreshWithAnimation = function() {
   // Refresh data without full-page reload.  AJAX.
   $.get('/random.json', function(data) {
     // Do this first so that we start fetching poster and video.
-    $("#two h2").text(data.title);
     $("#two img").attr("src", data.poster_path);
     $("#two iframe").attr("src", data.youtube_url);
+    $("#two h2 span.title").text(data.title);
+    $("#two h2 span.year").text(data.year);
+    $("#two h4").text(data.genres);
 
     $("#one").fadeOut();
     window.history.pushState({}, '', '/' + data.id + '/');
