@@ -7,7 +7,6 @@
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="{% static 'script.js' %}"></script>
-
 </head>
 <body>
 	<nav>
@@ -51,7 +50,17 @@
 			</div>	
 		</div>	
 	</nav>
-	<div class="results-container">
+	<div class="panel">
+		<img src="https://image.tmdb.org/t/p/original{{ poster_path }}" alt="Movie Poster">
+		<div class="right-panel">
+			<iframe src="https://www.youtube.com/embed/{{ youtube_trailer_key }}"></iframe>
+			<div class="info">
+				<h2>{{ title }} ( {{ year }} )</h2>
+				<h4> {{ genres }} </h4>
+			</div>
+		</div>
+	</div>	
+	<!-- <div class="results-container">
 		<h2>{{ title }}</h2>
 		<div class="main-container">
 			<div class="movie-poster">
@@ -61,6 +70,6 @@
 				<iframe width="720px" height="450px" src="https://www.youtube.com/embed/{{ youtube_trailer_key }}"></iframe>
 			</div>
 		</div>	
-	</div>
+	</div> -->
 </body>
 </html>				
