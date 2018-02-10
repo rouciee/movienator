@@ -1,6 +1,7 @@
 import random
 
 from django.shortcuts import redirect, render
+from django.http import JsonResponse
 from app.models import Movie
 
 
@@ -44,6 +45,16 @@ def index(request):
     movie = _get_random_movie_not_in(ids_to_exclude)
     return redirect('/' + str(movie.id) + '/')
 
+
+def random_json(request):
+    ids_to_exclude = _get_seen_from_session(request)
+    movie = _get_random_movie_not_in(ids_to_exclude)
+    return JsonResponse({
+        'id': movie.id,
+        'title': movie.title,
+        'youtube_url': "https://www.youtube.com/embed/" + movie.youtube_trailer_key,
+        'poster_path': "https://image.tmdb.org/t/p/original" + movie.poster_path
+    })
 
 def _hours_and_minutes(runtime):
     if runtime is None:

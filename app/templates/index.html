@@ -3,6 +3,7 @@
 <head>
 	<title>Movienator</title>
 	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'magic.min.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -11,44 +12,38 @@
 <body>
 	<nav>
 		<h1>Movienator</h1>
-		<div class="filter-container">
-			<div class="filter-buttons">
-				<div class="dropdown">
-					<button onclick="myFunction()" class="dropbtn genre-filter" type="button">Dimelooo qué quieres ver hoy?</button>
-						<div id="myDropdown" class="dropdown-content">
-							<div class="genres">
-								<ul class="lists">
-									<li class="active">Adventure
-										<i class="fas fa-times"></i>
-									</li>
-									<li>Action</li>
-									<li>Anime</li>
-									<li>Drama</li>
-								</ul>	
-								<ul class="lists">
-									<li class="active">Comedy</li>
-									<li>Thriller / Suspense </li>
-									<li>Horror</li>
-									<li class="active">Romantic Comedy</li>
-								</ul>
-								<ul class="lists">	
-									<li>Documentary</li>
-									<li>Satire</li>
-									<li>Western</li>
-									<li>Family</li>
-								</ul>
-								<ul class="lists">
-									<li>Musical</li>
-									<li>Faith / Spirituality</li>
-									<li>Independent</li>
-									<li>International</li>
-								</ul>
-							</div>	
-						</div>
+		<div class="dropdown">
+			<button class="dropdown-button genre-filter" type="button">Dimelooo qué quieres ver hoy?</button>
+			<div class="dropdown-content">
+				<div class="genres">
+					<ul class="lists">
+						<li>Adventure</li>
+						<li>Action</li>
+						<li>Anime</li>
+						<li>Drama</li>
+					</ul>
+					<ul class="lists">
+						<li>Comedy</li>
+						<li>Thriller / Suspense </li>
+						<li>Horror</li>
+						<li>Romantic Comedy</li>
+					</ul>
+					<ul class="lists">
+						<li>Documentary</li>
+						<li>Satire</li>
+						<li>Western</li>
+						<li>Family</li>
+					</ul>
+					<ul class="lists">
+						<li>Musical</li>
+						<li>Faith / Spirituality</li>
+						<li>Independent</li>
+						<li>International</li>
+					</ul>
 				</div>
-				<button autofocus class="roll" type="button" onclick="roll()">Roll!</button>	
-			</div>	
-		</div>	
+			</div>
+		</div>
+		<button autofocus class="roll" type="button">Roll!</button>
 	</nav>
 	<div class="panel">
 		<img src="https://image.tmdb.org/t/p/original{{ poster_path }}" alt="Movie Poster">
@@ -56,20 +51,9 @@
 			<iframe src="https://www.youtube.com/embed/{{ youtube_trailer_key }}"></iframe>
 			<div class="info">
 				<h2>{{ title }} ( {{ year }} )</h2>
-				<h4> {{ genres }} </h4>
+				<h4>{{ genres }}</h4>
 			</div>
 		</div>
-	</div>	
-	<!-- <div class="results-container">
-		<h2>{{ title }}</h2>
-		<div class="main-container">
-			<div class="movie-poster">
-				<img src="https://image.tmdb.org/t/p/original{{ poster_path }}" alt="Movie Poster">
-			</div>
-			<div class="movie-trailer">
-				<iframe width="720px" height="450px" src="https://www.youtube.com/embed/{{ youtube_trailer_key }}"></iframe>
-			</div>
-		</div>	
-	</div> -->
+	</div>
 </body>
-</html>				
+</html>

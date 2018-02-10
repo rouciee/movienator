@@ -20,5 +20,6 @@ from app import views
 urlpatterns = [
 	path('', views.index),
 	path('<int:pk>/', views.movie),
+    path('random.json', views.random_json),
     path('admin/', admin.site.urls),
 ]
