@@ -1,6 +1,6 @@
 html {
 	height: 100vh;
-	background-color: #232323;
+	background-color: #171717;
 }
 body {
 	font-size: 14px;
@@ -10,7 +10,7 @@ body {
 }
 
 nav {
-	background-color: #232323;
+	background-color: #171717;
 	margin: 0;
 	height: 70px;
 	box-shadow: -2px 2px 12px 0px rgba(0, 0, 0, 0.29);
@@ -30,6 +30,7 @@ nav button {
 	border-radius: 2px;
 	cursor: pointer;
 	background-color: #ffffff;
+	font-weight: 300;
 }
 
 .filter-buttons {
@@ -117,7 +118,6 @@ li:hover {
 
 .blur {
 	filter: blur(2px);
-	color: #ffffff;
 }
 
 /*===== PANEL*/
@@ -132,7 +132,7 @@ img {
 
 .right-panel {
 	width: 100%;
-	background-color: #232323;
+	background-color: #171717;
 }
 
 iframe {
