@@ -19,6 +19,7 @@ class Command(BaseCommand):
 				print('Bad status %d on %s. skipping...' % (res.status_code, movie))
 				continue
 
+			print(res.json())
 			movie.youtube_trailer_key = "-1"  # sentinel value for searched but couldn't find.
 			for r in res.json()['results']:
 				if r['site'] != 'YouTube':

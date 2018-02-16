@@ -21,6 +21,13 @@ class Movie(models.Model):
     poster_path = models.CharField(max_length=256, null=True)
     youtube_trailer_key = models.CharField(max_length=256, null=True)
 
+    tagline = models.CharField(max_length=256, null=True)
+    status= models.CharField(max_length=256, null=True)
+    budget = models.IntegerField(null=True)
+    revenue = models.IntegerField(null=True)
+    original_language = models.CharField(max_length=32, null=True)
+    spoken_languages = models.CharField(max_length=256, null=True)
+
     genres = models.ManyToManyField(Genre)
 
     def __str__(self):
