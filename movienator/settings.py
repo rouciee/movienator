@@ -25,7 +25,8 @@ SECRET_KEY = '++gn((avhtd1_h)epmzuw33i(qy)z08z85oz$5(sv=e-)qm+tz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ['DEBUG'] == 'TRUE'
 
-ALLOWED_HOSTS = [os.environ['ALLOWED_HOST']]
+
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
 
 
 # Application definition

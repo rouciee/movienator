@@ -8,16 +8,17 @@ API_URL_FORMAT = 'https://api.themoviedb.org/3/find/%s?api_key=%s&external_sourc
 
 
 class Command(BaseCommand):
-	help = 'Pulls ids from TMDB by searching 1 by 1 by IMDB id.'
+	help = 'Pulls FIND endpoint data from TMDB by searching 1 by 1 by imdb_id.'
 
 	def handle(self, *args, **kwargs):
 		api_key = os.environ['TMDB_API_KEY']
-		for movie in Movie.objects.filter(tmdb_id=None).exclude(imdb_id=None):
+		for movie in Movie.objects.filter(tmdb_id=None):
 			res = requests.get(API_URL_FORMAT % (movie.imdb_id, api_key))
 			if res.status_code != 200:
 				print('Bad status %d on %s. skipping...' % (res.status_code, movie))
 				continue
 
+			print(res.json())
 			movie_results = res.json()['movie_results']
 			if len(movie_results) == 0:
 				movie.tmdb_id = -1
@@ -29,4 +30,7 @@ class Command(BaseCommand):
 					movie.poster_path = result['poster_path']
 				if 'overview' in result:
 					movie.overview = result['overview']
+				if 'original_language' in result:
+					movie.original_language = result['original_language']
+
 			movie.save()
