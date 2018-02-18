@@ -27,39 +27,48 @@ nav h1 {
 
 nav button {
 	height: 33px;
-	border-radius: 2px;
 	cursor: pointer;
-	background-color: #ffffff;
 	font-weight: 300;
 }
 
-.filter-buttons {
-	display: flex;
-}
 
 .genre-filter {
 	width: 400px;
 	margin-left: 30px;
 	font-size: 1em;
 	color: #303030;
+	border-radius: 2px 0 0 2px;
+	background-color: #ffffff;
+	border-color: transparent;
+	box-shadow: inset 0 0 20px 4px #cccccc57;
+
 }
 
-.genre-filter:hover{
-	background-color: #20BBE0;
-	border-color: #20BBE0;
-	color: #ffffff;
+.fa-caret-down {
+	margin-left: 5px;
 }
 
 .roll {
-	margin-left: 20px;
-	width: 90px;
+	width:80px;
 	font-size: 1em;
-	color: #303030;
+	color: #ffffff;
+	border-radius: 0px 2px 2px 0;	
+	background-color: #20BBE0;
+	border-color: #20BBE0;
+}
+
+.roll:hover {
+	background-color: #189dbd;
+	border-color: #189dbd;
 }
 
 .dropdown-buttonbtn:focus {
     background-color: #20BBE0;
     border: 1px solid #20BBE0;
+}
+
+.rotate {
+	transform: rotate(180deg);
 }
 
 .dropdown {
@@ -108,16 +117,11 @@ li:hover {
 
 .active {
 	font-weight: bold;
-}
-
-.fa-times{
-	align-self: center;
-	color: #7574748a;
-	font-size: 11px;
+	color: red;
 }
 
 .blur {
-	filter: blur(2px);
+	filter: blur(3px);
 }
 
 /*===== PANEL*/

@@ -22,7 +22,9 @@
 	<nav>
 		<h1>Movienator</h1>
 		<div class="dropdown">
-			<button class="dropdown-button genre-filter" type="button">Dimelooo qué quieres ver hoy?</button>
+			<button class="dropdown-button genre-filter" type="button">Dimelooo qué quieres ver hoy?
+				<i class="fas fa-caret-down"></i>
+			</button>
 			<div class="dropdown-content">
 				<div class="genres">
 					<ul class="lists">
@@ -57,7 +59,7 @@
 	<div id="one" class="panel" style="display: none">
 		<img src="https://image.tmdb.org/t/p/original{{ poster_path }}" alt="Movie Poster">
 		<div class="right-panel">
-			<iframe src="https://www.youtube.com/embed/{{ youtube_trailer_key }}"></iframe>
+			<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/{{ youtube_trailer_key }}"></iframe>
 			<div class="info">
 				<h2>
 					<span class="title">{{ title }}</span>

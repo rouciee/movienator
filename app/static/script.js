@@ -100,4 +100,8 @@ $(window).on('load', function() {
   $(".roll").click(function() {
     refreshWithAnimation();
   });
+
+  $('.dropdown-button').click(function(){
+    $('.fa-caret-down').toggleClass('rotate');
+  });
 });
