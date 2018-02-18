@@ -1,41 +1,10 @@
-var imgLoaded = false;
-var videoLoaded = false;
+// ===== Dropdown Logic
 var selectedGenres = [];
 var selectedGenresOnLastOpen = [];
-
-var ANIMATION_DURATION = 250;
 
 var arraysHaveSameElements = function(a, b) {
   return a.length == b.length
          && a.every((element, index)=> element === b[index] );
-};
-
-var refreshWithAnimation = function() {
-  // Refresh data without full-page reload.  AJAX.
-  $.get('/random.json?' + $.param({'g': selectedGenres}), function(data) {
-    // Do this first so that we start fetching poster and video.
-    $("#two img").attr("src", data.poster_path);
-    $("#two iframe").attr("src", data.youtube_url);
-    $("#two h2 span.title").text(data.title);
-    $("#two h2 span.year").text(data.year);
-    $("#two h4").text(data.genres);
-
-    $("#one").fadeOut();
-    window.history.pushState({}, '', '/' + data.id + '/');
-  });
-};
-
-var maybeDoSwitch = function() {
-  if (imgLoaded && videoLoaded) {
-    $("#two").fadeIn(function() {
-      // Reset variables.
-      $("#one").prop("id", "tmp");
-      $("#two").prop("id", "one");
-      $("#tmp").prop("id", "two");
-      imgLoaded = false;
-      videoLoaded = false;
-    });
-  }
 };
 
 var openDropdown = function() {
@@ -48,21 +17,50 @@ var closeDropdown = function() {
   $(".dropdown-content").removeClass("show");
   $(".panel").removeClass("blur");
   if (!arraysHaveSameElements(selectedGenres.sort(), selectedGenresOnLastOpen.sort())) {
-    refreshWithAnimation();
+    $(".panel.queue").remove(); // throw out queue.
+    fetchNextMovie();
+    roll();
   }
 };
 
-$(window).on('load', function() {
-  $("#one").fadeIn();
-  $('img').on('load', function() {
-    imgLoaded = true;
-    maybeDoSwitch()
-  });
-  $('iframe').on('load', function() {
-    videoLoaded = true;
-    maybeDoSwitch()
-  });
+var isRolling = false;
+var roll = function() {
+  if (isRolling) {
+    return;
+  }
 
+  isRolling = true;
+  maybeFetchAnother();
+  $(".current").fadeOut(function() {
+    $(this).remove();
+
+    var interval = setInterval(function() {
+      if (showAnotherIfPossible()) {
+        isRolling = false;
+        clearInterval(interval);
+      } else {
+        $(".spinner").show(); // We might be here a while...
+      }
+    }, 10);
+  });
+};
+
+var showAnotherIfPossible = function() {
+  var next = $(".panel.queue.img-loaded.vid-loaded");
+  if (next.length > 0) {
+    next = $(next[0]);
+
+    window.history.pushState({}, '', '/' + next.data('id') + '/');
+    $(".spinner").hide();
+    next.removeClass("queue");
+    next.addClass("current");
+    next.fadeIn();
+    return true;
+  }
+  return false;
+};
+
+$(document).ready(function() {
   // ===== Attach handlers for dropdown
   $(".dropdown-button").click(function() {
     if ($(".dropdown-content").hasClass("show")) {
@@ -98,10 +96,55 @@ $(window).on('load', function() {
 
   // ===== Attach handler for roll button
   $(".roll").click(function() {
-    refreshWithAnimation();
+    roll();
   });
 
   $('.dropdown-button').click(function(){
     $('.fa-caret-down').toggleClass('rotate');
   });
+});
+
+var MOVIES_IN_QUEUE = 3;
+var maybeFetchAnother = function() {
+  var moviesInQueue = $(".panel.queue").length;
+  var moviesInQueueFullyLoaded = $(".panel.queue.img-loaded.vid-loaded").length;
+  if (moviesInQueue === moviesInQueueFullyLoaded &&
+      moviesInQueue < MOVIES_IN_QUEUE) {
+    fetchNextMovie();
+  }
+};
+
+var panelTemplate;
+var fetchNextMovie = function() {
+  $.get('/random.json?' + $.param({'g': selectedGenres}), function(data) {
+    var clone = panelTemplate.clone();
+    clone.removeClass("current");
+    clone.addClass("queue");
+    $("body").append(clone);
+    clone.data('id', data.id);
+    clone.find("h2 span.title").text(data.title);
+    clone.find("h2 span.year").text(data.year);
+    clone.find("h4").text(data.genres);
+    clone.find("img").attr("src", data.poster_path);
+    clone.find("iframe").attr("src", data.youtube_url);
+    clone.find('img').on('load', function(e) {
+      $(e.target).closest('.panel').addClass('img-loaded');
+      maybeFetchAnother();
+    });
+    clone.find('iframe').on('load', function(e) {
+      $(e.target).closest('.panel').addClass('vid-loaded');
+      maybeFetchAnother();
+    });
+  });
+};
+
+$(window).on('load', function() {
+  panelTemplate = $(".current").clone();
+  panelTemplate.removeClass("current");
+
+  $(".spinner").hide();
+  $(".current").fadeIn();
+
+  fetchNextMovie();
+  initialized = true;
 });
