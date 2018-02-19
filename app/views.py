@@ -29,7 +29,7 @@ GENRES_MAP = {
 
 def _get_random_movie_not_in(ids_to_exclude, genres_to_include=[], international=False):
     movies = Movie.objects.filter(
-        is_adult=False, imdb_rating__gt=6, imdb_num_votes__gt=400,
+        is_adult=False, imdb_rating__gt=6.5, imdb_num_votes__gt=10000,
         released_year__gt=2010)\
         .exclude(youtube_trailer_key=None)\
         .exclude(youtube_trailer_key='-1')\
