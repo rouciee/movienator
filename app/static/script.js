@@ -11,6 +11,7 @@ var openDropdown = function() {
   selectedGenresOnLastOpen = selectedGenres.slice(); // create copy of it
   $(".dropdown-content").addClass("show");
   $(".panel").addClass("blur");
+  $('.fa-caret-down').toggleClass('rotate');
 };
 
 var closeDropdown = function() {
@@ -21,6 +22,7 @@ var closeDropdown = function() {
     fetchNextMovie();
     roll();
   }
+  $('.fa-caret-down').toggleClass('rotate');
 };
 
 var isRolling = false;
@@ -97,10 +99,6 @@ $(document).ready(function() {
   // ===== Attach handler for roll button
   $(".roll").click(function() {
     roll();
-  });
-
-  $('.dropdown-button').click(function(){
-    $('.fa-caret-down').toggleClass('rotate');
   });
 });
 
