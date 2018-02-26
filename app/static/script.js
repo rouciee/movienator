@@ -124,7 +124,7 @@ var fetchNextMovie = function() {
     clone.find("h2 span.year").text(data.year);
     clone.find("h4").text(data.genres);
     clone.find("img").attr("src", data.poster_path);
-    clone.find("iframe").attr("src", data.youtube_url);
+    clone.find("iframe").attr("src", data.youtube_url + "?showinfo=0");
     clone.find('img').on('load', function(e) {
       $(e.target).closest('.panel').addClass('img-loaded');
       maybeFetchAnother();
