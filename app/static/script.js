@@ -120,9 +120,9 @@ var fetchNextMovie = function() {
     clone.addClass("queue");
     $("body").append(clone);
     clone.data('id', data.id);
-    clone.find("h2 span.title").text(data.title);
-    clone.find("h2 span.year").text(data.year);
-    clone.find("h4").text(data.genres);
+    // clone.find("h2 span.title").text(data.title);
+    // clone.find("h2 span.year").text(data.year);
+    clone.find(".genres-text").text(data.genres);
     clone.find("img").attr("src", data.poster_path);
     clone.find("iframe").attr("src", data.youtube_url + "?showinfo=0");
     clone.find('img').on('load', function(e) {

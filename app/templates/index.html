@@ -117,7 +117,7 @@
 	<div class="panel current" style="display: none">
 		<img src="https://image.tmdb.org/t/p/original{{ poster_path }}" alt="Movie Poster">
 		<div class="right-panel">
-			<p><b>Genres</b> > {{ genres }}</p>
+			<p><b>Genres</b> > <span class="genres-text">{{ genres }}</span></p>
 			<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/{{ youtube_trailer_key }}?showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen"></iframe>
 		</div>
 	</div>
