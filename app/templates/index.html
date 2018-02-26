@@ -17,44 +17,48 @@
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="{% static 'script.js' %}"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<nav>
 		<h1>Movie Muse</h1>
-		<div class="dropdown">
-			<button class="dropdown-button genre-filter" type="button">Genres
-				<i class="fas fa-caret-down"></i>
-			</button>
-			<div class="dropdown-content">
-				<div class="genres">
-					<ul class="lists">
-						<li>Action / Adventure</li>
-						<li>Animation</li>
-						<li>Biography</li>
-						<li>Comedy</li>
-					</ul>
-					<ul class="lists">
-						<li>Crime / Mystery</li>
-						<li>Documentary</li>
-						<li>Drama</li>
-						<li>Family</li>
-					</ul>
-					<ul class="lists">
-						<li>Fantasy / Sci-Fi</li>
-						<li>History</li>
-						<li>Horror / Thriller</li>
-						<li>International</li>
-					</ul>
-					<ul class="lists">
-						<li>Musical</li>
-						<li>Romance</li>
-						<li>Sport / Music</li>
-						<li>Western</li>
-					</ul>
+		<div class="mobile-group">
+			<div class="dropdown">
+				<button class="dropdown-button genre-filter" type="button">
+					Genres
+					<i class="fas fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content">
+					<div class="genres">
+						<ul class="lists">
+							<li>Action / Adventure</li>
+							<li>Animation</li>
+							<li>Biography</li>
+							<li>Comedy</li>
+						</ul>
+						<ul class="lists">
+							<li>Crime / Mystery</li>
+							<li>Documentary</li>
+							<li>Drama</li>
+							<li>Family</li>
+						</ul>
+						<ul class="lists">
+							<li>Fantasy / Sci-Fi</li>
+							<li>History</li>
+							<li>Horror / Thriller</li>
+							<li>International</li>
+						</ul>
+						<ul class="lists">
+							<li>Musical</li>
+							<li>Romance</li>
+							<li>Sport / Music</li>
+							<li>Western</li>
+						</ul>
+					</div>
 				</div>
 			</div>
+			<button autofocus class="roll" type="button">Roll!</button>
 		</div>
-		<button autofocus class="roll" type="button">Roll!</button>
 	</nav>
 	<div class="spinner">
 		<div class="dot1"></div>
