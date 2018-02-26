@@ -65,8 +65,12 @@ nav button {
   	width: 100%;
   }
 
-  .genre-filter {
+  button.genre-filter {
+  	margin-left: 10px;
   	width: auto !important;
+  }
+  button.roll {
+  	width: 60px;
   }
   img {
   	height: auto;
