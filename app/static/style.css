@@ -20,11 +20,10 @@ nav {
 	align-items: center;
 }
 
-nav h1 {
-	margin-left: 50px;
-	color: #ffffff;
+svg {
+	height: 60px;
+	margin-left: 40px;
 }
-
 nav button {
 	height: 33px;
 	cursor: pointer;
