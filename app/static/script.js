@@ -19,7 +19,7 @@ var closeDropdown = function() {
   $(".panel").removeClass("blur");
   if (!arraysHaveSameElements(selectedGenres.sort(), selectedGenresOnLastOpen.sort())) {
     $(".panel.queue").remove(); // throw out queue.
-    fetchNextMovie();
+    fetchNextMovie(); // B.C. when no movies in queue, can wait forever.
     roll();
   }
   $('.fa-caret-down').toggleClass('rotate');
@@ -32,9 +32,12 @@ var roll = function() {
   }
 
   isRolling = true;
-  maybeFetchAnother();
+  // TODO: Check if this should be checked/done after roll is shown.
+  if ($(".panel.queue.img-loaded.vid-loaded").length === MOVIES_IN_QUEUE) {
+    fetchNextMovie();
+  } // else should be chain-fetching.
   $(".current").fadeOut(function() {
-    $(this).remove();
+    $(this).remove(); // TODO: Hide and stop playing video.  "Cache" back button.
 
     var interval = setInterval(function() {
       if (showAnotherIfPossible()) {
@@ -107,38 +110,65 @@ var maybeFetchAnother = function() {
   var moviesInQueue = $(".panel.queue").length;
   var moviesInQueueFullyLoaded = $(".panel.queue.img-loaded.vid-loaded").length;
   if (moviesInQueue === moviesInQueueFullyLoaded &&
-      moviesInQueue < MOVIES_IN_QUEUE) {
+      moviesInQueue < MOVIES_IN_QUEUE &&
+      moviesInQueue > 0) {
     fetchNextMovie();
   }
 };
 
+var movieIdFromPath = function() {
+  var path = window.location.pathname;
+  return path.substring(1, path.length - 1);
+};
+
 var panelTemplate;
-var fetchNextMovie = function() {
-  $.get('/random.json?' + $.param({'g': selectedGenres}), function(data) {
+var fetchNextMovie = function(pk) {
+  var url = pk === undefined ? '/random.json?' + $.param({'g': selectedGenres}) : '/'+pk+'.json';
+  $.get(url, function(data) {
     var clone = panelTemplate.clone();
-    clone.removeClass("current");
-    clone.addClass("queue");
-    $("body").append(clone);
+    if (pk === undefined) {
+      clone.addClass("queue");
+    } else {
+      clone.addClass("current");
+    }
+
     clone.data('id', data.id);
-    // clone.find("h2 span.title").text(data.title);
-    // clone.find("h2 span.year").text(data.year);
+    clone.addClass("movie-"+data.id);
     clone.find(".genres-text").text(data.genres);
     clone.find("img").attr("src", data.poster_path);
     clone.find("iframe").attr("src", data.youtube_url + "?showinfo=0");
     clone.find('img').on('load', function(e) {
-      $(e.target).closest('.panel').addClass('img-loaded');
-      maybeFetchAnother();
+      $(e.target).closest('.panel').addClass('img-loaded');  // NOTE: This can be done in closure here?
+      if (pk === undefined) {
+        maybeFetchAnother();
+      } else if (
+        $(e.target).closest('.panel').hasClass("vid-loaded") &&
+        parseInt(movieIdFromPath()) === data.id
+      ) {
+        $(".spinner").hide();
+        clone.fadeIn(); // Show IFF still at same location.
+      }
     });
     clone.find('iframe').on('load', function(e) {
       $(e.target).closest('.panel').addClass('vid-loaded');
-      maybeFetchAnother();
+      if (pk === undefined) {
+        maybeFetchAnother();
+      } else if (
+        $(e.target).closest('.panel').hasClass("img-loaded") &&
+        parseInt(movieIdFromPath()) === data.id
+      ) {
+        $(".spinner").hide();
+        clone.fadeIn(); // Show IFF still at same location.
+      }
     });
+    $("body").append(clone);
   });
 };
 
 $(window).on('load', function() {
   panelTemplate = $(".current").clone();
   panelTemplate.removeClass("current");
+  panelTemplate.removeClass("movie-"+movieIdFromPath());
 
   $(".spinner").hide();
   $(".current").fadeIn();
@@ -146,3 +176,22 @@ $(window).on('load', function() {
   fetchNextMovie();
   initialized = true;
 });
+
+window.onpopstate = function(event) {
+  // Back or Forward button was pressed.
+  var movieId = movieIdFromPath();
+
+  // Hide everything. (Show spinner)
+  $(".panel").fadeOut();
+  $(".spinner").show();
+  $(".current").removeClass("current");
+
+  // If exists; show.  TODO: Set current.
+  if ($(".movie-"+movieId).length > 0) {
+    $(".spinner").hide();
+    $(".movie-"+movieId).addClass("current").fadeIn();
+  } else {
+    // Else fetch, and eventually show (if nothing else happened).
+    fetchNextMovie(movieId);
+  }
+};

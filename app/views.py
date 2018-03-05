@@ -97,19 +97,12 @@ def random_json(request):
 
     movie = _get_random_movie_not_in(ids_to_exclude, genres_to_include, international)
     _add_to_session(request, movie)
-    return JsonResponse({
-        'id': movie.id,
-        'title': movie.title,
-        'year': movie.released_year,
-        'genres': ', '.join([g.name for g in movie.genres.all()]),
-        'youtube_url': "https://www.youtube.com/embed/" + movie.youtube_trailer_key,
-        'poster_path': "https://image.tmdb.org/t/p/original" + movie.poster_path
-    })
+    return _json_response(movie)
 
-def _hours_and_minutes(runtime):
-    if runtime is None:
-        return (None, None)
-    return (int(runtime / 60), runtime % 60)
+
+def movie_json(request, pk):
+    movie = Movie.objects.get(pk=pk)
+    return _json_response(movie)
 
 
 def movie(request, pk):
@@ -119,6 +112,7 @@ def movie(request, pk):
     genre_string = ', '.join([g.name for g in movie.genres.all()])
     (hours, minutes) = _hours_and_minutes(movie.runtime)
     return render(request, 'index.html', {
+        'id': movie.id,
         'title': movie.title,
         'overview': movie.overview,
         'year': movie.released_year,
@@ -127,4 +121,21 @@ def movie(request, pk):
         'poster_path': movie.poster_path,
         'youtube_trailer_key': movie.youtube_trailer_key,
         'genres': genre_string
+    })
+
+
+def _hours_and_minutes(runtime):
+    if runtime is None:
+        return (None, None)
+    return (int(runtime / 60), runtime % 60)
+
+
+def _json_response(movie):
+    return JsonResponse({
+        'id': movie.id,
+        'title': movie.title,
+        'year': movie.released_year,
+        'genres': ', '.join([g.name for g in movie.genres.all()]),
+        'youtube_url': "https://www.youtube.com/embed/" + movie.youtube_trailer_key,
+        'poster_path': "https://image.tmdb.org/t/p/original" + movie.poster_path
     })
