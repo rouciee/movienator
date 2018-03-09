@@ -68,16 +68,19 @@ nav button {
   	margin-left: 10px;
   	width: auto !important;
   }
+
   button.roll {
   	width: 60px;
   }
+
   img {
-  	height: auto;
-  	width: 100%;
+    height: 100vh;
+    width: 100%;
   }
 
   .panel {
   	flex-wrap: wrap;
+    height: auto !important;
   }
 }
 
@@ -176,7 +179,7 @@ li:hover {
 
 .panel {
 	display: flex;
-    height: calc(100vh - 70px);
+  height: calc(100vh - 70px);
 }
 
 img {
