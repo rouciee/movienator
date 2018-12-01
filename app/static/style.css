@@ -79,8 +79,13 @@ nav button {
   }
 
   .panel {
-  	flex-wrap: wrap;
-    height: auto !important;
+    display: none;
+  	/*flex-wrap: wrap;
+    height: auto !important;*/
+  }
+
+  .right-panel {
+    display: none;
   }
 }
 
