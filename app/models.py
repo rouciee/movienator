@@ -30,7 +30,5 @@ class Movie(models.Model):
 
     genres = models.ManyToManyField(Genre)
 
-    in_netflix = models.BooleanField(default=False)
-
     def __str__(self):
         return str(self.__dict__)
