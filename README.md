@@ -14,6 +14,14 @@ Ensure you have a .env file.
 
 ### How to deploy
 
+Use:
+
+```
+./deploy.sh
+```
+
+If want to push data, keep db.sqlite dirty before running that command.
+
 To avoid paying for a database as a service that can hold > 10,000 rows, we commit the database
 as a SQLite file and use LSF to share it. Heroku does not provide LFS capabilities,
 so to push to heroku we add a commit just before pushing that removes the contents from the
